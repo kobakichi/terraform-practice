@@ -17,11 +17,15 @@ resource "aws_vpc" "tf_pr3_vpc" {
 # for_eachを使用してのサブネット作成
 
 resource "aws_subnet" "tf_pr3_subnet" {
+  # リスト型のsubnet_cidrsをmap型に変更してfor_eachを使用する。
+  # map型に変更するには、toset関数を使用する。
+  # tosetで変更すると、mapのkeyにリストのvalueが設定される。
+  # そのため、ここでeach.keyを指定しても取得できるのはvalueのみ。
   for_each = toset(var.subnet_cidrs)
   vpc_id = aws_vpc.tf_pr3_vpc.id
   cidr_block = each.value
 
   tags = {
-    Name = "practice3-${each.key}"
+    Name = "practice3-${each.value}"
   }
 }
