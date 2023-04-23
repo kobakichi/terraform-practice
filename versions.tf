@@ -3,7 +3,7 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = ">= 4.49.0"
     }
   }
@@ -18,9 +18,9 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Env = "terraform-practice-3"
+      Env   = "terraform-practice-3"
       Owner = "kobakichi"
-      Step = "step3"
+      Step  = "step3"
     }
   }
 }
