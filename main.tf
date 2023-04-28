@@ -39,22 +39,16 @@ resource "aws_security_group" "tf_pr3_sg" {
   vpc_id      = aws_vpc.tf_pr3_vpc.id
 
   # インバウンドを許可する
-  ingress {
-    # 許可を開始するポート番号
-    from_port = 443
-    # 許可を終了するポート番号
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["10.1.10.10/32"]
-  }
+  dynamic "ingress" {
+    for_each = toset(var.sg_allow_cidrs)
 
-  ingress {
-    # 許可を開始するポート番号
-    from_port = 443
-    # 許可を終了するポート番号
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["10.1.10.11/32"]
+    content {
+      description = "dynamic cidr block"
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      cidr_blocks = [ingress.value]
+    }
   }
 
   # アウトバウンドの許可設定
@@ -66,6 +60,3 @@ resource "aws_security_group" "tf_pr3_sg" {
   }
 }
 
-output "security_group_id" {
-  value = aws_security_group.tf_pr3_sg.id
-}
