@@ -40,7 +40,7 @@ resource "aws_security_group" "tf_pr3_sg" {
 
   # インバウンドを許可する
   dynamic "ingress" {
-    for_each = toset(var.sg_allow_cidrs)
+    for_each = var.sg_ingress_rules
 
     content {
       # descriptionは日本語で書くとエラーになる危険性があるため、英語で記載する
@@ -48,8 +48,8 @@ resource "aws_security_group" "tf_pr3_sg" {
       description = "dynamic cidr block"
       from_port   = 443
       to_port     = 443
-      protocol    = "tcp"
-      cidr_blocks = [ingress.value]
+      protocol    = ingress.value.protocol
+      cidr_blocks = [ingress.key]
     }
   }
 
