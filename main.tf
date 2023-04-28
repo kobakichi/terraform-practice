@@ -43,6 +43,8 @@ resource "aws_security_group" "tf_pr3_sg" {
     for_each = toset(var.sg_allow_cidrs)
 
     content {
+      # descriptionは日本語で書くとエラーになる危険性があるため、英語で記載する
+      # cidr_blocksはリストを取得するため、リスト型で記述すること
       description = "dynamic cidr block"
       from_port   = 443
       to_port     = 443
