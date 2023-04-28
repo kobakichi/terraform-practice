@@ -8,3 +8,8 @@ variable "subnet_cidrs" {
   type        = list(string)
   description = "サブネットのCIDR"
 }
+
+variable "sg_allow_cidrs" {
+  type        = list(string)
+  description = "SecurityGroupのAllowCIDRリスト"
+}
