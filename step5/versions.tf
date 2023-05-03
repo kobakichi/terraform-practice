@@ -19,9 +19,9 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Env = "terraform-practice-5"
+      Env   = "terraform-practice-5"
       Owner = "kobakichi"
-      Step = step5
+      Step  = "step5"
     }
   }
 }
