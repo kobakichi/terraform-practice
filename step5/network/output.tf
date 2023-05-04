@@ -6,7 +6,6 @@ output "vpc_id" {
   value = aws_vpc.main.id
 }
 
-# Subnet_ID
 output "subnet_ids" {
   description = "Subnet ID"
   value = values(aws_subnet.terraform-subnet)[*].id

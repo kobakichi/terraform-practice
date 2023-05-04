@@ -1,9 +1,9 @@
 # variable type definition
-# child modules
+# for child modules
 
 variable "vpc_cidr" {
   type = string
-  description = "VPC CIDR"
+  description = "VPC CIDRS"
 }
 
 variable "subnet_cidrs" {
