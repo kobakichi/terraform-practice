@@ -9,3 +9,11 @@ variable "subnet_cidr_blocks" {
   type        = list(string)
   description = "CIDR blocks for the subnets"
 }
+
+variable "ec2_ami" {
+  type = string
+}
+
+variable "instance_type" {
+  type = string
+}
